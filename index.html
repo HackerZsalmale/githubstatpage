@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="card">
+    <div class="banner"></div>
+    <div class="profilepic"><img id="profilepic" src="" style="border: 3px solid darkgrey; border-radius: 17px;"></img></div>
+    <div class="name"><p id="name"></p></div>
+    <div class="stats">
+      <div class="inside">
+      <p id="bio">Bio: </p>
+      <p id="publicrepos">Public repos: </p>
+      <p id="followers">Followers: </p>
+    </div>
+    </div>
+  </div>
+</body>
+
+<script>    
+const username = 'hackerzsalmale'
+
+fetch(`https://api.github.com/users/${username}`)
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById("name").textContent = data.name || data.login;
+        document.getElementById("bio").textContent += data.bio;
+        document.getElementById("profilepic").src = data.avatar_url;
+        document.getElementById("publicrepos").textContent += data.public_repos;
+        document.getElementById("followers").textContent += data.followers;
+      })
+</script>
+</html>
