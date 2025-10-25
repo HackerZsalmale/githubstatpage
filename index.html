@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
+  <input type="text" placeholder="user">
   <div id="card">
     <div class="banner"></div>
     <div class="profilepic"><img id="profilepic" src="" style="border: 3px solid darkgrey; border-radius: 17px;"></img></div>
@@ -23,7 +24,7 @@
 </body>
 
 <script>    
-const username = 'hackerzsalmale'
+const username = document.querySelector('input').value;
 
 fetch(`https://api.github.com/users/${username}`)
       .then(response => response.json())
