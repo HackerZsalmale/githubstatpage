@@ -72,3 +72,18 @@ img {
     font-size: 20px;
 }
 
+
+input {
+    width: 150px;
+    height: 70px;
+    background-color: darkgrey;
+    border-radius: 17px;
+    border: 3px solid black;
+}
+
+button {
+    width: 90px;
+    height: 70px;
+    border-radius: 17px;
+    border: 3px solid black;
+}
