@@ -8,7 +8,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-  <input type="text" placeholder="user">
+  <input type="text" placeholder="Enter GitHub username" id="name2">
+  <button onclick="updateUsername()">Get Username</button>
+  <p id="output"></p>
   <div id="card">
     <div class="banner"></div>
     <div class="profilepic"><img id="profilepic" src="" style="border: 3px solid darkgrey; border-radius: 17px;"></img></div>
@@ -24,7 +26,7 @@
 </body>
 
 <script>    
-const username = document.querySelector('input').value;
+const username = ''
 
 fetch(`https://api.github.com/users/${username}`)
       .then(response => response.json())
@@ -35,5 +37,28 @@ fetch(`https://api.github.com/users/${username}`)
         document.getElementById("publicrepos").textContent += data.public_repos;
         document.getElementById("followers").textContent += data.followers;
       })
+
+
+function updateUsername() {
+  const username = document.getElementById('name2').value;
+  document.getElementById("bio").textContent = 'Bio: ';
+  document.getElementById("publicrepos").textContent = 'Public repos: ';
+  document.getElementById("followers").textContent = 'Followers: ';
+  if (!username) {
+    alert('Please enter a GitHub username.');
+    return;
+  }
+
+
+  fetch(`https://api.github.com/users/${username}`)
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById("name").textContent = data.name || data.login;
+        document.getElementById("bio").textContent += data.bio;
+        document.getElementById("profilepic").src = data.avatar_url;
+        document.getElementById("publicrepos").textContent += data.public_repos;
+        document.getElementById("followers").textContent += data.followers;
+      })
+}
 </script>
 </html>
