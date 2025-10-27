@@ -36,6 +36,7 @@ fetch(`https://api.github.com/users/${username}`)
         document.getElementById("profilepic").src = data.avatar_url;
         document.getElementById("publicrepos").textContent += data.public_repos;
         document.getElementById("followers").textContent += data.followers;
+        document.getElementById("card").onclick = () => open(`https://github.com/${username}`, '_blank');
       })
 
 
@@ -58,7 +59,14 @@ function updateUsername() {
         document.getElementById("profilepic").src = data.avatar_url;
         document.getElementById("publicrepos").textContent += data.public_repos;
         document.getElementById("followers").textContent += data.followers;
+        document.getElementById("card").onclick = () => open(`https://github.com/${username}`, '_blank');
+
       })
 }
+
+if (console.error()) {
+  alert('API LIMIT REACHED');
+}
+
 </script>
 </html>
